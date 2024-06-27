@@ -3,7 +3,9 @@
 This function is to generate Pascal's triangle.
 """
 
+
 def pascal_triangle(n):
+
     """
     Generate Pascal's triangle of n rows.
 
@@ -14,15 +16,12 @@ def pascal_triangle(n):
     # Initialize the triangle with the first row
     triangle = [[1]]
 
-    for _ in range(1, n):
-        prev_row = triangle[-1]
-        new_row = [1]  # Each row starts with 1
+    for i in range(1, n):
+        row = [1]
+        for j in range(1, i):
+            row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
 
-        # Calculate the middle elements of the new row
-        for i in range(1, len(prev_row)):
-            new_row.append(prev_row[i-1] + prev_row[i])
-
-        new_row.append(1)  # Each row ends with 1
-        triangle.append(new_row)
+        row.append(1)
+        triangle.append(row)
 
     return triangle
